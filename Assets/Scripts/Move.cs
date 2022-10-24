@@ -4,15 +4,54 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 5;
-    private Rigidbody rd;
-    
-    private void Start()
-    {
-        rd = GetComponent<Rigidbody>();
+    float xRange = 20f;
+    float yRange = 5f;
 
-        rd.AddForce(transform.forward * speed, ForceMode.Impulse);
+    [SerializeField]
+    private float speed;
+    //[SerializeField]
+    //private float tilt;
+    //[SerializeField]
+    //private float boost;
+    [SerializeField]
+    private float positionPitchFactor = -2f;
+    [SerializeField]
+    private float positionYawFactor = 2f;
+    [SerializeField]
+    private float controlPitchFactor = -15f;
+    [SerializeField]
+    private float controlRollFactor = -20f;
+
+    private float pitch, yaw, roll;
+    private float xThrow, yThrow;
+
+    private void Update()
+    {
+        ProcessPosition();
+        ProcessRotation();
+    }
+
+    private void ProcessPosition()
+    {
+        xThrow = Input.GetAxis("Horizontal");
+        yThrow = Input.GetAxis("Vertical");
+
+        float xOffset = xThrow * Time.deltaTime * speed;
+        float rawXPos = transform.localPosition.x + xOffset;
+        float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
+
+        float yOffset = yThrow * Time.deltaTime * speed;
+        float rawYPos = transform.localPosition.y + yOffset;
+        float clampedYPos = Mathf.Clamp(rawXPos, -yRange, yRange);
+    }
+    private void ProcessRotation()
+    {
+        pitch = (transform.localPosition.y * positionPitchFactor) + (yThrow * controlPitchFactor);
+        yaw = transform.localPosition.x * positionYawFactor;
+        roll = xThrow * controlRollFactor;
+
+        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+
     }
 
 }
