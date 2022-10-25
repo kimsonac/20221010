@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float mouseSpeed;
     [SerializeField]
-    private float tilt;
-    [SerializeField]
     private float boost;
+    [SerializeField]
+    private Transform startPosition;
    
     //[SerializeField]
     //private float positionPitchFactor = -2f;
@@ -35,26 +35,15 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        // Move();
         MouseRotation();
-        Move2();
+        Move();
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Shot();
+        }
     }
 
-    private void Move()
-    {
-        playerPos.x = Input.GetAxisRaw("Horizontal"); // 옆
-        playerPos.z = Input.GetAxisRaw("Vertical"); // 앞뒤
-
-        //TODO: 스페이스 누르면 위로 올라가기 > 슈팅2d
-        //TODO: 회전값 조정...
-
-        //Debug.Log(playerPos);
-        rd.velocity = playerPos * speed;
-        transform.GetChild(0).rotation = Quaternion.Euler(0.0f, 0.0f, rd.velocity.x * -tilt);
-        
-    }
-
-    
     private void MouseRotation()
     {
         camearaRot.x = -Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSpeed; // 마우스 위아래
@@ -76,9 +65,23 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    private void Move2()
+    private void Move()
     {
         playerPos = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
         transform.position += playerPos * speed * Time.deltaTime;
+    }
+
+    private void Shot()
+    {
+
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Boundary"))
+        {
+            Debug.Log($"collision exit {collision.gameObject.tag}");
+            transform.position = startPosition.position;
+        }
     }
 }
