@@ -27,15 +27,15 @@ public class Move : MonoBehaviour
 
     private void Update()
     {
-        ProcessPosition();
+        xThrow = Input.GetAxis("Horizontal");
+        yThrow = Input.GetAxis("Vertical");
+
+        //ProcessPosition();
         ProcessRotation();
     }
 
     private void ProcessPosition()
     {
-        xThrow = Input.GetAxis("Horizontal");
-        yThrow = Input.GetAxis("Vertical");
-
         float xOffset = xThrow * Time.deltaTime * speed;
         float rawXPos = transform.localPosition.x + xOffset;
         float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
@@ -50,7 +50,7 @@ public class Move : MonoBehaviour
         yaw = transform.localPosition.x * positionYawFactor;
         roll = xThrow * controlRollFactor;
 
-        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+        transform.localRotation = Quaternion.Euler(0, yaw, roll);
 
     }
 
