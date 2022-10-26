@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     private Transform startPosition;
     [SerializeField]
     private GameObject VFX_Engine;
+    [SerializeField]
+    private GameObject[] bullet;
+    private int bulletOrder = 0;
 
     //[SerializeField]
     //private float positionPitchFactor = -2f;
@@ -43,6 +46,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Shot();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            for(int i=0; i<bullet.Length; i++)
+            {
+                bullet[i].transform.position = bullet[i].transform.parent.position;
+                bullet[i].SetActive(false);
+            }
+
+            bulletOrder = 0;
         }
     }
 
@@ -75,7 +89,13 @@ public class PlayerController : MonoBehaviour
 
     private void Shot()
     {
+        bullet[bulletOrder].SetActive(true);
+        bulletOrder++;
 
+        if (bulletOrder > bullet.Length - 1)
+        {
+            return;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -86,7 +106,11 @@ public class PlayerController : MonoBehaviour
             transform.position = startPosition.position;
         }
 
-        else if (collision.gameObject.CompareTag("Goal"))
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Goal"))
         {
             VFX_Engine.SetActive(false);
         }

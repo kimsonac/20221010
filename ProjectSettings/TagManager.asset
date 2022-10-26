@@ -7,6 +7,12 @@ TagManager:
   - Boundary
   - Obstacle
   - Bullet
+  - loweffect
+  - effect
+  - Effects
+  - nopool
+  - Water
+  - Goal
   layers:
   - Default
   - TransparentFX
