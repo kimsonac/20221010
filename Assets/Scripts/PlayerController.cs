@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     private float boost;
     [SerializeField]
     private Transform startPosition;
-   
+    [SerializeField]
+    private GameObject VFX_Engine;
+
     //[SerializeField]
     //private float positionPitchFactor = -2f;
     //[SerializeField]
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     //private float pitch, yaw, roll;
 
-    
+
     private void Awake()
     {
         rd = GetComponent<Rigidbody>();
@@ -82,6 +84,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"collision exit {collision.gameObject.tag}");
             transform.position = startPosition.position;
+        }
+
+        else if (collision.gameObject.CompareTag("Goal"))
+        {
+            VFX_Engine.SetActive(false);
         }
     }
 }
