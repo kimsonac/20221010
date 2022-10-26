@@ -33,11 +33,12 @@ public class PlayerController : MonoBehaviour
     //private float pitch, yaw, roll;
 
 
-    private void Awake()
-    {
-        rd = GetComponent<Rigidbody>();
-        playerPos = transform.position;
-    }
+    //private void Awake()
+    //{
+    //    rd = GetComponent<Rigidbody>();
+    //    playerPos = transform.position;
+    //}
+
     private void Update()
     {
         MouseRotation();
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
         if (bulletOrder > bullet.Length - 1)
         {
-            return;
+            bulletOrder = 0;
         }
     }
 
