@@ -13,6 +13,9 @@ TagManager:
   - nopool
   - Water
   - Goal
+  - Terrain
+  - Ob1
+  - Ob2
   layers:
   - Default
   - TransparentFX

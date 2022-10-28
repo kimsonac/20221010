@@ -4,61 +4,39 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private Transform startPosition;
+    [SerializeField] private Transform shotPosition;
+    [SerializeField] private GameObject VFX_Engine;
+    [SerializeField] private GameObject bullet;
+
+    [SerializeField] private float speed;
+    [SerializeField] private float mouseSpeed;
+    [SerializeField] private float boost;
+
     private Vector3 playerPos;
     private Vector3 camearaRot;
-    private Rigidbody rd;
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private float mouseSpeed;
-    [SerializeField]
-    private float boost;
-    [SerializeField]
-    private Transform startPosition;
-    [SerializeField]
-    private GameObject VFX_Engine;
-    [SerializeField]
-    private GameObject[] bullet;
+    private bool end = false;
     private int bulletOrder = 0;
-
-    //[SerializeField]
-    //private float positionPitchFactor = -2f;
-    //[SerializeField]
-    //private float positionYawFactor = 2f;
-    //[SerializeField]
-    //private float controlPitchFactor = -15f;
-    //[SerializeField]
-    //private float controlRollFactor = -20f;
-
-    //private float pitch, yaw, roll;
-
-
-    //private void Awake()
-    //{
-    //    rd = GetComponent<Rigidbody>();
-    //    playerPos = transform.position;
-    //}
 
     private void Update()
     {
-        MouseRotation();
-        Move();
-
-        if (Input.GetButtonDown("Fire1"))
+        if (!end)
         {
-            Shot();
-        }
+            MouseRotation();
+            Move();
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            for(int i=0; i<bullet.Length; i++)
+            if (Input.GetButtonDown("Fire1"))
             {
-                bullet[i].transform.position = bullet[i].transform.parent.position;
-                bullet[i].SetActive(false);
+                Shot();
             }
 
-            bulletOrder = 0;
+            //if (Input.GetKeyDown(KeyCode.R))
+            //{
+                
+            //}
         }
+        
     }
 
     private void MouseRotation()
@@ -90,30 +68,9 @@ public class PlayerController : MonoBehaviour
 
     private void Shot()
     {
-        bullet[bulletOrder].SetActive(true);
-        bulletOrder++;
-
-        if (bulletOrder > bullet.Length - 1)
-        {
-            bulletOrder = 0;
-        }
+        var obj = Instantiate(bullet, shotPosition.position, transform.rotation);
+        Destroy(obj, 3f);
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Boundary"))
-        {
-            Debug.Log($"collision exit {collision.gameObject.tag}");
-            transform.position = startPosition.position;
-        }
 
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Goal"))
-        {
-            VFX_Engine.SetActive(false);
-        }
-    }
 }

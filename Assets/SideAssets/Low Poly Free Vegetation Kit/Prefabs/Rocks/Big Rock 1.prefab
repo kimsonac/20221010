@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 196138364911844801}
   - component: {fileID: 7307381277321456973}
   - component: {fileID: 8042568063406964701}
+  - component: {fileID: 422006737}
   m_Layer: 0
   m_Name: Big Rock 1
   m_TagString: Obstacle
@@ -96,3 +97,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1566104696818536918, guid: b028c90d3d17c7849a589391cd891c6c, type: 3}
+--- !u!114 &422006737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353588270218422151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ffed8c14c26144dad5bde74c1a68ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

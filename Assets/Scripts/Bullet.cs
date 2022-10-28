@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     }
     private void Start()
     {
-        rd.AddForce(transform.forward * speed, ForceMode.Impulse);
+        rd.velocity = transform.forward * speed;
     }
 
     private void OnTriggerEnter(Collider other)
