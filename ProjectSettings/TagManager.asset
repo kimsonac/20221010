@@ -16,6 +16,9 @@ TagManager:
   - Terrain
   - Ob1
   - Ob2
+  - Item
+  - ItemOb1
+  - ItemOb2
   layers:
   - Default
   - TransparentFX

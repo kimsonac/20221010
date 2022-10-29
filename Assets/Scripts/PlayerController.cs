@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private Transform startPosition;
     [SerializeField] private Transform shotPosition;
     [SerializeField] private GameObject VFX_Engine;
     [SerializeField] private GameObject bullet;
@@ -16,12 +15,20 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 playerPos;
     private Vector3 camearaRot;
-    private bool end = false;
-    private int bulletOrder = 0;
+    private bool stop = true;
+    private float curSpeed;
+
+
+    private void Start()
+    {
+        curSpeed = speed;
+        GameManager.gameManager.OnPlayerBoost += ChangeMovingSpeed;
+        GameManager.gameManager.OnPlayerStop += MoveState;
+    }
 
     private void Update()
     {
-        if (!end)
+        if (!stop)
         {
             MouseRotation();
             Move();
@@ -31,12 +38,18 @@ public class PlayerController : MonoBehaviour
                 Shot();
             }
 
-            //if (Input.GetKeyDown(KeyCode.R))
-            //{
-                
-            //}
         }
         
+    }
+
+    public void MoveState(bool state)
+    {
+        stop = state;
+    }
+    public void ChangeMovingSpeed(float a)
+    {
+        curSpeed += boost;
+        Debug.Log($"[ITEM BUFF] current speed: {curSpeed}");
     }
 
     private void MouseRotation()
@@ -63,7 +76,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         playerPos = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
-        transform.position += playerPos * speed * Time.deltaTime;
+        transform.position += playerPos * curSpeed * Time.deltaTime;
     }
 
     private void Shot()

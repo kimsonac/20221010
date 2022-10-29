@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 5977549091374805509}
   - component: {fileID: 7666899932116253268}
   - component: {fileID: 5672133048800501202}
-  - component: {fileID: 4576947873547679678}
-  - component: {fileID: 2045694379}
+  - component: {fileID: 1904502509282957277}
   m_Layer: 0
   m_Name: Big Rock 4
   m_TagString: Obstacle
@@ -83,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4576947873547679678
-MeshCollider:
+--- !u!65 &1904502509282957277
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,19 +92,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8575159152346635976, guid: b028c90d3d17c7849a589391cd891c6c, type: 3}
---- !u!114 &2045694379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4029145346137806361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35ffed8c14c26144dad5bde74c1a68ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Size: {x: 17.437725, y: 6.7979774, z: 10.597563}
+  m_Center: {x: 0.33263063, y: 2.9680166, z: 0.057883024}

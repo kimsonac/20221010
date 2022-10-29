@@ -9,27 +9,39 @@ public class PlayerCollider : MonoBehaviour
         Debug.Log(collision.transform.tag);
         if (collision.transform.CompareTag("Terrain"))
         {
-            //Debug.Log(collision.transform.tag);
-            Invoke("SetPlayer", 1f);
-            transform.parent.gameObject.SetActive(false);
+            GameManager.gameManager.RespawnPlayer();
         }
     }
 
-    private void SetPlayer()
-    {
-        transform.parent.gameObject.SetActive(true);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Item"))
+        if (other.CompareTag("Obstacle") || other.CompareTag("Boundary"))
         {
-
+            GameManager.gameManager.RespawnPlayer();
         }
 
         if (other.CompareTag("Goal"))
         {
+            GameManager.gameManager.GameEnd();
+        }
 
+        if (other.CompareTag("Item"))
+        {
+            other.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+            GameManager.gameManager.PlayerBoost();
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Ob1"))
+        {
+            GameManager.gameManager.StartInterrubt(1);
+        }
+
+        if (other.CompareTag("Ob2"))
+        {
+            GameManager.gameManager.StartInterrubt(2);
         }
     }
+
 }

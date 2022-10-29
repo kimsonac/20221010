@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4262527595393066397}
   - component: {fileID: 2638574092031663471}
   - component: {fileID: 8382617272481783508}
-  - component: {fileID: 3644307588585385336}
   - component: {fileID: 253297482}
+  - component: {fileID: 8235717073388782564}
   m_Layer: 0
   m_Name: Mushroom 2
   m_TagString: Obstacle
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3644307588585385336
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799145172504711529}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5596485599947641857, guid: c43f8078a174987439a67ccaab3be883, type: 3}
 --- !u!114 &253297482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +95,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ffed8c14c26144dad5bde74c1a68ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8235717073388782564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799145172504711529}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32497823, y: 0.2662992, z: 0.26750213}
+  m_Center: {x: 0.016690843, y: 0.13235447, z: -0.0053742453}
