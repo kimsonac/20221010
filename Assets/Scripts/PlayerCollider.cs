@@ -28,7 +28,6 @@ public class PlayerCollider : MonoBehaviour
 
         if (other.CompareTag("Item"))
         {
-            other.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
             GameManager.gameManager.PlayerBoost();
             Destroy(other.gameObject);
         }

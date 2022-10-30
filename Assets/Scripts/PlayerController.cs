@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform shotPosition;
     [SerializeField] private GameObject VFX_Engine;
+    [SerializeField] private GameObject VFX_Item;
     [SerializeField] private GameObject bullet;
 
     [SerializeField] private float speed;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 camearaRot;
     private bool stop = true;
     private float curSpeed;
+    private bool enter = false;
 
 
     private void Start()
@@ -48,8 +50,22 @@ public class PlayerController : MonoBehaviour
     }
     public void ChangeMovingSpeed(float a)
     {
-        curSpeed += boost;
-        Debug.Log($"[ITEM BUFF] current speed: {curSpeed}");
+        if (!enter)
+        {
+            enter = true;
+            VFX_Item.SetActive(true);
+            curSpeed += boost;
+            Debug.Log($"[ITEM BUFF] current speed: {curSpeed}");
+            StartCoroutine(_InactiveVFX());
+        }
+        
+    }
+
+    private IEnumerator _InactiveVFX()
+    {
+        yield return new WaitForSeconds(1f);
+        VFX_Item.SetActive(false);
+        enter = false;
     }
 
     private void MouseRotation()

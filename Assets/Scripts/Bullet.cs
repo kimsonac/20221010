@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private const string ROCK_1 = "Rock_1";
-    private const string ROCK_2 = "Rock_2";
-
     [SerializeField] public GameObject shot_VFX;
     private Rigidbody rd;
     private float speed = 1000f;
@@ -27,7 +24,8 @@ public class Bullet : MonoBehaviour
             || other.CompareTag("Ob1") 
             || other.CompareTag("Ob2")
             || other.CompareTag("Item")
-            || other.CompareTag("Player"))
+            || other.CompareTag("Player")
+            || other.CompareTag("Goal"))
         {
             return;
         }
