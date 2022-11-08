@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20554718, g: 0.2759512, b: 0.44692934, a: 1}
+  m_IndirectSpecularColor: {r: 0.2055512, g: 0.27606446, b: 0.4472713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -949,7 +949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 682004727}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &255851422
 BoxCollider:
@@ -1932,8 +1932,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1221888207}
-  - {fileID: 393818169}
   - {fileID: 255851421}
+  - {fileID: 393818169}
   - {fileID: 920445671}
   m_Father: {fileID: 745693770}
   m_RootOrder: 1
@@ -3934,7 +3934,7 @@ MonoBehaviour:
   VFX_Item: {fileID: 1741796047}
   bullet: {fileID: 7499486252268655028, guid: eecaf57f4d77f824f9e5de8657aa83b1, type: 3}
   speed: 50
-  mouseSpeed: 1000
+  mouseSpeed: 900
   boost: 20
 --- !u!4 &1345721099
 Transform:
